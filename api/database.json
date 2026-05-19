@@ -1,0 +1,41 @@
+{
+  "productos": [
+    {
+      "nombre": "Portatil",
+      "descripcion": "Lenovo",
+      "existencias": 20,
+      "precioUnit": 1500,
+      "id": "t4U_b9P7orw"
+    },
+    {
+      "nombre": "Tablet",
+      "descripcion": "Sansung",
+      "existencias": 5,
+      "precioUnit": 700,
+      "id": "TbEVk-3NADQ"
+    },
+    {
+      "nombre": "Telefono",
+      "descripcion": "Motorola",
+      "existencias": 2,
+      "precioUnit": 800,
+      "id": "J9JEJKgmc4w"
+    },
+    {
+      "nombre": "mouse",
+      "descripcion": "Predator",
+      "existencias": 2,
+      "precioUnit": 200,
+      "id": "sbtrUGMblDM"
+    },
+    {
+      "nombre": "Televisor",
+      "descripcion": "Samsung",
+      "existencias": 10,
+      "precioUnit": 500,
+      "id": "EygLhkM7IpI"
+    }
+
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
