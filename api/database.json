@@ -34,8 +34,28 @@
       "existencias": 10,
       "precioUnit": 500,
       "id": "EygLhkM7IpI"
+    },
+    {
+      "nombre": "",
+      "descripcion": "",
+      "existencias": 0,
+      "precioUnit": 0,
+      "id": "imLNjtU7WmM"
+    },
+    {
+      "nombre": "1",
+      "descripcion": "",
+      "existencias": 0,
+      "precioUnit": 0,
+      "id": "6l4ZUNhiJMI"
+    },
+    {
+      "nombre": "1",
+      "descripcion": "",
+      "existencias": 0,
+      "precioUnit": 1,
+      "id": "C6kgzM1TU1o"
     }
-
   ],
   "$schema": "./node_modules/json-server/schema.json"
 }

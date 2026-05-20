@@ -3,30 +3,45 @@ import './styles/globals.css';
 
 const endpoint = "http://localhost:3000/productos"
 
+
 const guardarProducto = document.getElementById("btn-send")
 const limpiarForm = document.getElementById("btn-cancel")
 const productoList = document.getElementById("product-list")
+const formulario = document.getElementById("product-form")
 
+let paginaActual = 1
+let productosPorPagina = 5
 
 async function traeDatos(){
 
     const response = await fetch(endpoint)
     const productos = await response.json()
-    pintarLosDAtos(productos)
+
+    pintarLosDAtos(productos, paginaActual)
     actualizarResumen(productos)
 }
 
 traeDatos()
 
 guardarProducto.addEventListener("click", agregarProducto)
+limpiarForm.addEventListener("click", () => {
+    formulario.reset();
+})
 
-function pintarLosDAtos(productos){
+function pintarLosDAtos(productos, pagina){
 
     const lugarDeImpresion = document.getElementById("inventory-list")
 
     lugarDeImpresion.innerHTML = ``
 
-    for (const producto of productos) {
+    // Calcular inicio y final
+    const inicio = (pagina - 1) * productosPorPagina
+    const final = inicio + productosPorPagina
+
+    // Obtener solo los productos de esta página
+    const productosPaginados = productos.slice(inicio, final)
+
+    for (const producto of productosPaginados) {
 
         lugarDeImpresion.innerHTML += `
 
@@ -41,16 +56,20 @@ function pintarLosDAtos(productos){
                     </span>
                 </div>
             </td>
+
             <td class="px-8 py-6 text-center">
                 <span class="px-4 py-1.5 bg-emerald-50 text-emerald-600 rounded-xl text-[10px] font-black uppercase tracking-tight border border-emerald-100">
                     ${producto.existencias} Unidades
                 </span>
             </td>
+
             <td class="px-8 py-6 text-center font-bold text-slate-900">
                 $ ${producto.precioUnit}
             </td>
+
             <td class="px-8 py-6 text-right">
                 <div class="flex justify-end gap-3">
+
                     <button class="w-10 h-10 flex items-center justify-center text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all border border-transparent hover:border-indigo-100" title="Editar">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              class="h-5 w-5"
@@ -63,6 +82,7 @@ function pintarLosDAtos(productos){
                                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
                     </button>
+
                     <button class="w-10 h-10 flex items-center justify-center text-rose-600 hover:bg-rose-50 rounded-xl transition-all border border-transparent hover:border-rose-100" title="Eliminar">
                         <svg xmlns="http://www.w3.org/2000/svg"
                              class="h-5 w-5"
@@ -75,12 +95,14 @@ function pintarLosDAtos(productos){
                                   d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                     </button>
+
                 </div>
             </td>
         </tr>
 
         `
     }
+    
 }
 
 async function agregarProducto(){
@@ -133,5 +155,39 @@ function actualizarResumen(productos){
 
 }
 
+const btnSiguiente = document.getElementById("btn-next")
+const btnAnterior = document.getElementById("btn-prev")
+
+btnSiguiente.addEventListener("click", async () => {
+
+    const response = await fetch(endpoint)
+    const productos = await response.json()
+
+    const totalPaginas = Math.ceil(productos.length / productosPorPagina)
+
+    if (paginaActual < totalPaginas) {
+
+        paginaActual++
+
+        pintarLosDAtos(productos, paginaActual)
+        actualizarResumen(productos)
+    }
+
+})
+
+btnAnterior.addEventListener("click", async () => {
+
+    if (paginaActual > 1) {
+
+        paginaActual--
+
+        const response = await fetch(endpoint)
+        const productos = await response.json()
+
+        pintarLosDAtos(productos, paginaActual)
+        actualizarResumen(productos)
+    }
+
+})
 
 
