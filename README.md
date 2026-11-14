@@ -1,43 +1,51 @@
-# StockMaster - Gestión de Inventario 🚀
+# StockMaster · Gestión de inventario
 
-Bienvenido al proyecto **StockMaster**, una aplicación premium para la gestión de inventarios. Este proyecto está diseñado para practicar el desarrollo de una interfaz CRUD completa consumiendo una API REST.
+Interfaz web para gestionar el inventario de una tienda, que consume una API REST simulada con `json-server`. Proyecto formativo de Riwi.
 
-## 📂 Estructura del Proyecto
+## Qué hace
 
-El proyecto está dividido en dos partes principales:
+- Lista los productos con **paginación** (anterior / siguiente).
+- **Crea productos** nuevos desde un formulario (nombre, descripción, existencias y precio).
+- Muestra un **resumen del inventario**: número de productos, valor total y productos con stock crítico.
+- Pendiente: editar y eliminar productos.
 
-- **`/client`**: Contiene la interfaz de usuario construida con **Vite** y **Tailwind CSS**. Ya tienes toda la estructura HTML y los estilos listos para usar.
-- **`/api`**: Aquí es donde debes configurar tu servidor de datos utilizando **json-server**.
+## Tecnologías
 
-## 🛠️ Tecnologías Utilizadas
+JavaScript (ES6+) · HTML · Tailwind CSS · Vite · json-server
 
-- **Frontend:** HTML5, JavaScript (ES6+), Tailwind CSS.
-- **Herramientas de Construcción:** Vite.
-- **Backend (Simulado):** JSON Server.
+## Cómo ejecutarlo
 
-## 📋 Tareas a Realizar
+Requisitos: Node.js 18 o superior. Hacen falta dos terminales.
 
-Tu misión es conectar la interfaz visual con la lógica del backend:
+**1. API simulada** (queda en `http://localhost:3000/productos`):
 
-1.  **Configurar la API:**
-    - Inicializa un servidor con `json-server` en la carpeta `/api`.
-    - Crea un archivo `db.json` con la estructura necesaria para los productos (nombre, precio, stock, descripción).
-2.  **Lógica del Cliente (`/client/src/main.js`):**
-    - Implementar el **Listado** (GET) de productos al cargar la página.
-    - Implementar la **Creación** (POST) de nuevos productos desde el formulario.
-    - Implementar la **Edición** (PUT/PATCH) de productos existentes.
-    - Implementar la **Eliminación** (DELETE) de productos.
-    - Actualizar las estadísticas superiores dinámicamente.
+```bash
+cd api
+npm install
+npm test
+```
 
-## 🚀 Cómo empezar
+**2. Cliente:**
 
-1.  Instala las dependencias en la carpeta del cliente:
-    ```bash
-    cd client
-    npm install
-    npm run dev
-    ```
-2.  Configura e inicia tu servidor en la carpeta `api`.
+```bash
+cd client
+npm install
+npm run dev
+```
 
----
-¡Mucha suerte con el desarrollo! Que el código te acompañe. 💻✨
+Abre la dirección que muestra Vite en la terminal.
+
+## Estructura
+
+```
+api/
+  database.json     Datos de los productos (los usa json-server)
+client/
+  index.html        Interfaz
+  src/main.js       Peticiones a la API, pintado de la tabla, paginación y resumen
+  src/styles/       Estilos (Tailwind CSS)
+```
+
+## Autor
+
+**Axel Ruiz Polo** · Desarrollador Full Stack Junior · [Portafolio](https://arp34.github.io/) · [LinkedIn](https://www.linkedin.com/in/axel-ruiz-polo/)
